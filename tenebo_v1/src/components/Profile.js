@@ -80,6 +80,14 @@ export default function Profile () {
                         {totalPrice} ETH
                     </div>
             </div>
+            <div className="flex flex-row text-center justify-center mt-10 md:text-2xl text-white">
+                    <div>
+                    {data.length >=4 &&
+                        <h2 className="font-bold"> Level 2 adopter </h2>
+                        
+                    }
+                    </div>
+            </div>
             <div className="flex flex-col text-center items-center mt-11 text-white">
                 <h2 className="font-bold">Your NFTs</h2>
                 <div className="flex justify-center flex-wrap max-w-screen-xl">

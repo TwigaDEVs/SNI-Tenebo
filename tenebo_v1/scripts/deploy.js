@@ -15,8 +15,27 @@ async function main() {
     abi: JSON.parse(marketplace.interface.format('json'))
   }
 
+
   //This writes the ABI and address to the mktplace.json
   fs.writeFileSync('./src/Marketplace.json', JSON.stringify(data))
+
+
+  const Stores = await hre.ethers.getContractFactory("Storedata");
+  const strores = await Stores.deploy();
+
+  await strores.deployed();
+
+  const storeData = {
+    address: strores.address,
+    abi: JSON.parse(strores.interface.format('json'))
+  }
+
+
+    //This writes the ABI and address to the mktplace.json
+  fs.writeFileSync('./src/Storedata.json', JSON.stringify(storeData))
+
+
+
 }
 
 main()
