@@ -12,6 +12,8 @@ contract Tenebo {
          uint userId; // id will autogenerate
          string fullName;
          address username; // username becomes the ERC Address
+         string image;
+         string[] social_media_links;
          uint256 timestamp;
     }
 
@@ -30,11 +32,14 @@ contract Tenebo {
    // it takes fullName and the username as the parameters
     function addAdopterInfo(
         string memory _fullName,
-        address _username
+        address _username,
+        string memory _image,
+        string[] memory _social_media_links
+
 
     ) public{
        // pushing to the adopter's data
-       users.push(Marafiki(userId, _fullName, _username, block.timestamp));
+       users.push(Marafiki(userId, _fullName, _username, _image, _social_media_links, block.timestamp));
        userId++;
     }
 
@@ -75,9 +80,11 @@ contract Tenebo {
     }
 
    // function to update adopter details using the parameters
-    function updateAdopter(uint _userId, string memory _fullName)public{
+    function updateAdopter(uint _userId, string memory _fullName, string memory _image, string[] memory _social_media_links)public{
        uint i = findAdopter(_userId);
        users[i].fullName = _fullName;
+       users[i].image = _image;
+       users[i].social_media_links = _social_media_links;
     }
 
    // deleter adopter info
