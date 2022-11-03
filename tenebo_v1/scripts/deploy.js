@@ -17,17 +17,18 @@ async function main() {
 
 
   //This writes the ABI and address to the mktplace.json
-  fs.writeFileSync('./src/Marketplace.json', JSON.stringify(data))
+  fs.writeFileSync('./src/Marketplace.json', JSON.stringify(data));
 
 
-  const Stores = await hre.ethers.getContractFactory("Storedata");
-  const strores = await Stores.deploy();
+  const Storedata = await hre.ethers.getContractFactory("Storedata");
+  
+  const storedata = await Storedata.deploy();
 
-  await strores.deployed();
+  await storedata.deployed();
 
   const storeData = {
-    address: strores.address,
-    abi: JSON.parse(strores.interface.format('json'))
+    address: storedata.address,
+    abi: JSON.parse(storedata.interface.format('json'))
   }
 
 
