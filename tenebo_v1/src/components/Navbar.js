@@ -1,5 +1,7 @@
-import logo from "../logo_3.png";
-import mara from "../mara.jpg";
+// import logo from "../logo_3.png";
+// import mara from "../mara.jpg";
+import Dropdown from "./Dropdown";
+import "./Navbar.css";
 import {
   BrowserRouter as Router,
   Switch,
@@ -16,6 +18,7 @@ function Navbar() {
   const [connected, toggleConnect] = useState(false);
   const location = useLocation();
   const [currAddress, updateAddress] = useState("0x");
+  const [navbar, setNavbar] = useState(false);
 
   async function getAddress() {
     const ethers = require("ethers");
@@ -72,134 +75,98 @@ function Navbar() {
   });
 
   return (
-    <div className="">
-      <nav className="w-screen">
-        <ul className="flex items-end justify-between py-3 bg-transparent text-white pr-5">
-          <li className="flex items-end ml-5 pb-2">
-            <Link to="/">
-              <img
-                src={mara}
-                alt=""
-                width={50}
-                height={50}
-                className="inline-block -mt-2"
-              />
-              <div className="inline-block font-bold text-xl ml-2">
-                Adoption Listings
-              </div>
-            </Link>
-          </li>
-          <li className="w-2/6">
-            <ul className="lg:flex justify-between font-bold mr-10 text-lg">
-              <li className="border-b-2 hover:pb-0 p-2">
-                <div class="relative inline-block text-left">
-                  <div>
-                    <button
+   
+
+    <nav className="w-full bg-white shadow">
+      <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
+        <div>
+          <div className="flex items-center justify-between py-3 md:py-5 md:block">
+            <a href="javascript:void(0)">
+              <Link to="/"><h2 className="text-2xl font-bold">Tenebo</h2></Link>
+            </a>
+            <div className="md:hidden">
+              <button
+                className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
+                onClick={() => setNavbar(!navbar)}
+              >
+                {navbar ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-6 h-6"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-6 h-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
+                  </svg>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div
+            className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
+              navbar ? "block" : "hidden"
+            }`}
+          >
+            <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
+              <li className="text-gray-600 hover:text-blue-600">
+                <a href="javascript:void(0)">Home</a>
+              </li>
+              <li className="text-gray-600 hover:text-blue-600">
+                <Link to="/adoptions">Adoptions</Link>
+              </li>
+              <li className="text-gray-600 hover:text-blue-600">
+                <Link to="/sellNFT">Mint Predator</Link>
+              </li>
+              <li className="text-gray-600 relative hover:text-blue-600">
+                <button
                       type="button"
-                      class="inline-flex"
+                      className="inline-flex"
                       id="menu-button"
                       aria-expanded="true"
                       aria-haspopup="true"
                       onClick={handleDropdown}
                     >
-                      Mode
+                     Mara
                     </button>
-                  </div>
-                  {dropdown && (
-                    <>
-                      <div
-                        class="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                        role="menu"
-                        aria-orientation="vertical"
-                        aria-labelledby="menu-button"
-                        tabindex="-1"
-                      >
-                        <div class="py-1" role="none">
-                          <Link to="Boma"
-                            href="#"
-                            class="text-gray-700 block px-4 py-2 text-sm"
-                            role="menuitem"
-                            tabindex="-1"
-                            id="menu-item-0"
-                          >
-                            Boma
-                          </Link>
-                        </div>
-                        <div class="py-1" role="none">
-                          <Link to="/lion-guardians"
-                            href="#"
-                            class="text-gray-700 block px-4 p-2 py-2 text-sm"
-                            role="menuitem"
-                            tabindex="-1"
-                            id="menu-item-2"
-                          >
-                            Lion Guardians
-                          </Link>
-                        </div>
-                      </div>
-                    </>
-                  )}
-                </div>
+                    {dropdown && <Dropdown />}
               </li>
-              <li className='w-2/6'>
-                <ul className='lg:flex justify-between font-bold mr-10 text-lg'>
-                {location.pathname === "/" ? 
-                  <li className='border-b-2 hover:pb-0 p-2'>
-                    <Link to="/">Home</Link>
-                  </li>
-                  :
-                  <li className='hover:border-b-2 hover:pb-0 p-2'>
-                    <Link to="/">Home</Link>
-                  </li>              
-                  }
-                  {location.pathname === "/" ? 
-                  <li className='border-b-2 hover:pb-0 p-2'>
-                    <Link to="/adoptions">Adoptions</Link>
-                  </li>
-                  :
-                  <li className='hover:border-b-2 hover:pb-0 p-2'>
-                    <Link to="/adoptions">Adoptions</Link>
-                  </li>              
-                  }
-                  {location.pathname === "/sellNFT" ? 
-                  <li className='border-b-2 hover:pb-0 p-2'>
-                    <Link to="/sellNFT">List Adoption by NFT</Link>
-                  </li>
-                  :
-                  <li className='hover:border-b-2 hover:pb-0 p-2'>
-                    <Link to="/sellNFT">List Adoption by NFT</Link>
-                  </li>              
-                  }              
-                  {location.pathname === "/profile" ? 
-                  <li className='border-b-2 hover:pb-0 p-2'>
-                    <Link to="/profile">Profile</Link>
-                  </li>
-                  :
-                  <li className='hover:border-b-2 hover:pb-0 p-2'>
-                    <Link to="/profile">Profile</Link>
-                  </li>              
-                  }  
-                  <li>
-                    <button
+              <li className="text-gray-600 hover:text-blue-600">
+                <Link to="/profile">Profile</Link>
+              </li>
+              <li className="text-gray-600 hover:text-blue-600">
+                <button
                       className="enableEthereumButton bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm"
                       onClick={connectWebsite}
                     >
                       {connected ? "Connected" : "Connect Wallet"}
-                    </button>
-                  </li>
-                </ul>
+                  </button>
               </li>
-              </ul>
-          </li>
-        </ul>
-      </nav>
-      <div className="text-white text-bold text-right mr-10 text-sm">
-        {currAddress !== "0x"
-          ? "Connected to"
-          : "Not Connected. Please login to view NFTs"}{" "}
-        {currAddress !== "0x" ? currAddress.substring(0, 15) + "..." : ""}
+            </ul>
+          </div>
+        </div>
       </div>
-    </div>
+    </nav>
   );
 }
 
