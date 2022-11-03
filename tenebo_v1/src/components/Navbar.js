@@ -141,42 +141,46 @@ function Navbar() {
                   )}
                 </div>
               </li>
-              {location.pathname === "/" ? (
-                <li className="border-b-2 hover:pb-0 p-2">
-                  <Link to="/">Adoptions</Link>
-                </li>
-              ) : (
-                <li className="hover:border-b-2 hover:pb-0 p-2">
-                  <Link to="/">Adoptions</Link>
-                </li>
-              )}
-              {location.pathname === "/sellNFT" ? (
-                <li className="border-b-2 hover:pb-0 p-2">
-                  <Link to="/sellNFT">List Adoption by NFT</Link>
-                </li>
-              ) : (
-                <li className="hover:border-b-2 hover:pb-0 p-2">
-                  <Link to="/sellNFT">List Adoption by NFT</Link>
-                </li>
-              )}
-              {location.pathname === "/profile" ? (
-                <li className="border-b-2 hover:pb-0 p-2">
-                  <Link to="/profile">Profile</Link>
-                </li>
-              ) : (
-                <li className="hover:border-b-2 hover:pb-0 p-2">
-                  <Link to="/profile">Profile</Link>
-                </li>
-              )}
-              <li>
-                <button
-                  className="enableEthereumButton bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm"
-                  onClick={connectWebsite}
-                >
-                  {connected ? "Connected" : "Connect Wallet"}
-                </button>
+              <li className='w-2/6'>
+                <ul className='lg:flex justify-between font-bold mr-10 text-lg'>
+                  {location.pathname === "/" ? 
+                  <li className='border-b-2 hover:pb-0 p-2'>
+                    <Link to="/">Adoptions</Link>
+                  </li>
+                  :
+                  <li className='hover:border-b-2 hover:pb-0 p-2'>
+                    <Link to="/">Adoptions</Link>
+                  </li>              
+                  }
+                  {location.pathname === "/sellNFT" ? 
+                  <li className='border-b-2 hover:pb-0 p-2'>
+                    <Link to="/sellNFT">List Adoption by NFT</Link>
+                  </li>
+                  :
+                  <li className='hover:border-b-2 hover:pb-0 p-2'>
+                    <Link to="/sellNFT">List Adoption by NFT</Link>
+                  </li>              
+                  }              
+                  {location.pathname === "/profile" ? 
+                  <li className='border-b-2 hover:pb-0 p-2'>
+                    <Link to="/profile">Profile</Link>
+                  </li>
+                  :
+                  <li className='hover:border-b-2 hover:pb-0 p-2'>
+                    <Link to="/profile">Profile</Link>
+                  </li>              
+                  }  
+                  <li>
+                    <button
+                      className="enableEthereumButton bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm"
+                      onClick={connectWebsite}
+                    >
+                      {connected ? "Connected" : "Connect Wallet"}
+                    </button>
+                  </li>
+                </ul>
               </li>
-            </ul>
+              </ul>
           </li>
         </ul>
       </nav>
