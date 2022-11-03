@@ -102,7 +102,7 @@ function Navbar() {
                       aria-haspopup="true"
                       onClick={handleDropdown}
                     >
-                      Dropdown
+                      Mode
                     </button>
                   </div>
                   {dropdown && (
@@ -115,7 +115,7 @@ function Navbar() {
                         tabindex="-1"
                       >
                         <div class="py-1" role="none">
-                          <a
+                          <Link to="Boma"
                             href="#"
                             class="text-gray-700 block px-4 py-2 text-sm"
                             role="menuitem"
@@ -123,18 +123,18 @@ function Navbar() {
                             id="menu-item-0"
                           >
                             Boma
-                          </a>
+                          </Link>
                         </div>
                         <div class="py-1" role="none">
-                          <a
+                          <Link to="/lion-guardians"
                             href="#"
-                            class="text-gray-700 block px-4 py-2 text-sm"
+                            class="text-gray-700 block px-4 p-2 py-2 text-sm"
                             role="menuitem"
                             tabindex="-1"
                             id="menu-item-2"
                           >
                             Lion Guardians
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </>
