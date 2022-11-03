@@ -143,13 +143,22 @@ function Navbar() {
               </li>
               <li className='w-2/6'>
                 <ul className='lg:flex justify-between font-bold mr-10 text-lg'>
-                  {location.pathname === "/" ? 
+                {location.pathname === "/" ? 
                   <li className='border-b-2 hover:pb-0 p-2'>
-                    <Link to="/">Adoptions</Link>
+                    <Link to="/">Home</Link>
                   </li>
                   :
                   <li className='hover:border-b-2 hover:pb-0 p-2'>
-                    <Link to="/">Adoptions</Link>
+                    <Link to="/">Home</Link>
+                  </li>              
+                  }
+                  {location.pathname === "/" ? 
+                  <li className='border-b-2 hover:pb-0 p-2'>
+                    <Link to="/adoptions">Adoptions</Link>
+                  </li>
+                  :
+                  <li className='hover:border-b-2 hover:pb-0 p-2'>
+                    <Link to="/adoptions">Adoptions</Link>
                   </li>              
                   }
                   {location.pathname === "/sellNFT" ? 
