@@ -19,7 +19,7 @@ const Dropdown = ({ className }) => {
 		>
 			<div class="py-1" role="none">
 				<Link
-					to="Boma"
+					to="/boma"
 					href="#"
 					className="text-gray-700 block px-4 py-2 text-sm"
 					role="menuitem"
@@ -31,7 +31,7 @@ const Dropdown = ({ className }) => {
 			</div>
 			<div class="py-1" role="none">
 				<Link
-					to="/lion-guardians"
+					to="/lionGuardian"
 					href="#"
 					className="text-gray-700 block px-4 p-2 py-2 text-sm"
 					role="menuitem"
