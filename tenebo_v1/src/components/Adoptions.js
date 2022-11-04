@@ -70,17 +70,19 @@ async function getAllNFTs() {
     updateData(items);
 }
 
+// flex mt-5 justify-between flex-wrap max-w-screen-xl text-center
+
 if(!dataFetched)
     getAllNFTs();
 
 return (
     <div>
         <Navbar></Navbar>
-        <div className="flex flex-col place-items-center mt-20 ">
+        <div className="flex flex-col place-items-center mt-15 ">
             <div className="md:text-xl font-bold text-white">
                 Listed for Adoption
             </div>
-            <div className="flex mt-5 justify-between flex-wrap max-w-screen-xl text-center">
+            <div className="flex mt-5 justify-around flex-wrap max-w-screen-xl text-center">
                 {data.map((value, index) => {
                     return <NFTTile data={value} key={index}></NFTTile>;
                 })}
