@@ -17,6 +17,9 @@ function NFTTile (data) {
                 <p className="display-inline">
                     {data.data.description}
                 </p>
+                <p className="display-inline">
+                    {data.data.price} ETH
+                </p>
             </div>
         </div>
         </Link>

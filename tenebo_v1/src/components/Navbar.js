@@ -1,5 +1,6 @@
 // import logo from "../logo_3.png";
-// import mara from "../mara.jpg";
+import mara from "../mara.jpg";
+import tene from "../tene.png"
 import Dropdown from "./Dropdown";
 import "./Navbar.css";
 import {
@@ -19,6 +20,7 @@ function Navbar() {
   const location = useLocation();
   const [currAddress, updateAddress] = useState("0x");
   const [navbar, setNavbar] = useState(false);
+  
 
   async function getAddress() {
     const ethers = require("ethers");
@@ -141,7 +143,7 @@ function Navbar() {
               <li className="text-gray-600 relative hover:text-blue-600">
                 <button
                       type="button"
-                      className="inline-flex"
+                      classNameName="inline-flex"
                       id="menu-button"
                       aria-expanded="true"
                       aria-haspopup="true"
