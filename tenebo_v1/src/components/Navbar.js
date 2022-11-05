@@ -1,91 +1,77 @@
-// import logo from "../logo_3.png";
-import mara from "../mara.jpg";
-import tene from "../tene.png"
-import Dropdown from "./Dropdown";
-import "./Navbar.css";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useRouteMatch,
-  useParams,
-} from "react-router-dom";
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router";
+import Dropdown from "./Dropdown"
+import "./Navbar.css"
+import { Link } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { useLocation } from "react-router"
 
-function Navbar() {
-  const [dropdown, setDropdown] = useState(false);
-  const [connected, toggleConnect] = useState(false);
-  const location = useLocation();
-  const [currAddress, updateAddress] = useState("0x");
-  const [navbar, setNavbar] = useState(false);
-  
+function Navbar () {
+  const [ dropdown, setDropdown ] = useState(false)
+  const [ connected, toggleConnect ] = useState(false)
+  const location = useLocation()
+  const [ , updateAddress ] = useState("0x")
+  const [ navbar, setNavbar ] = useState(false)
 
-  async function getAddress() {
-    const ethers = require("ethers");
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
-    const addr = await signer.getAddress();
-    updateAddress(addr);
+
+  async function getAddress () {
+    const ethers = require("ethers")
+    const provider = new ethers.providers.Web3Provider(window.ethereum)
+    const signer = provider.getSigner()
+    const addr = await signer.getAddress()
+    updateAddress(addr)
   }
 
-  function updateButton() {
-    const ethereumButton = document.querySelector(".enableEthereumButton");
-    ethereumButton.textContent = "Connected";
-    ethereumButton.classList.remove("hover:bg-blue-70");
-    ethereumButton.classList.remove("bg-blue-500");
-    ethereumButton.classList.add("hover:bg-green-70");
-    ethereumButton.classList.add("bg-green-500");
+  function updateButton () {
+    const ethereumButton = document.querySelector(".enableEthereumButton")
+    ethereumButton.textContent = "Connected"
+    ethereumButton.classList.remove("hover:bg-blue-70")
+    ethereumButton.classList.remove("bg-blue-500")
+    ethereumButton.classList.add("hover:bg-green-70")
+    ethereumButton.classList.add("bg-green-500")
   }
 
-  async function connectWebsite() {
-    const chainId = await window.ethereum.request({ method: "eth_chainId" });
+  async function connectWebsite () {
+    const chainId = await window.ethereum.request({ method: "eth_chainId" })
     if (chainId !== "0x5") {
       //alert('Incorrect network! Switch your metamask network to Rinkeby');
       await window.ethereum.request({
         method: "wallet_switchEthereumChain",
-        params: [{ chainId: "0x5" }],
-      });
+        params: [ { chainId: "0x5" } ],
+      })
     }
     await window.ethereum
       .request({ method: "eth_requestAccounts" })
       .then(() => {
-        updateButton();
-        console.log("here");
-        getAddress();
-        window.location.replace(location.pathname);
-      });
+        updateButton()
+        console.log("here")
+        getAddress()
+        window.location.replace(location.pathname)
+      })
   }
 
   const handleDropdown = () => {
-    setDropdown(!dropdown);
-  };
+    setDropdown(!dropdown)
+  }
 
   useEffect(() => {
-    let val = window.ethereum.isConnected();
-    if (val) {
-      console.log("here");
-      getAddress();
-      toggleConnect(val);
-      updateButton();
+    if (window.ethereum.isConnected()) {
+      getAddress()
+      toggleConnect(true)
+      updateButton()
     }
 
-    window.ethereum.on("accountsChanged", function (accounts) {
-      window.location.replace(location.pathname);
-    });
-  });
+    window.ethereum.on("accountsChanged", function (_accounts) {
+      window.location.replace(location.pathname)
+    })
+  }, [ location.pathname ])
 
   return (
-   
+
 
     <nav className="w-full bg-white shadow">
       <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
         <div>
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
-            <a href="javascript:void(0)">
-              <Link to="/"><h2 className="text-2xl font-bold">Tenebo</h2></Link>
-            </a>
+            <Link to="/"><h2 className="text-2xl font-bold">Tenebo</h2></Link>
             <div className="md:hidden">
               <button
                 className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
@@ -126,9 +112,7 @@ function Navbar() {
         </div>
         <div>
           <div
-            className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
-              navbar ? "block" : "hidden"
-            }`}
+            className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${navbar ? "block" : "hidden"}`}
           >
             <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
               <li className="text-gray-600 hover:text-blue-600">
@@ -142,34 +126,34 @@ function Navbar() {
               </li>
               <li className="text-gray-600 relative hover:text-blue-600">
                 <button
-                      type="button"
-                      classNameName="inline-flex"
-                      id="menu-button"
-                      aria-expanded="true"
-                      aria-haspopup="true"
-                      onClick={handleDropdown}
-                    >
-                     Mara
-                    </button>
-                    {dropdown && <Dropdown />}
+                  type="button"
+                  className="inline-flex"
+                  id="menu-button"
+                  aria-expanded="true"
+                  aria-haspopup="true"
+                  onClick={handleDropdown}
+                >
+                  Mara
+                </button>
+                {dropdown && <Dropdown />}
               </li>
               <li className="text-gray-600 hover:text-blue-600">
                 <Link to="/profile">Profile</Link>
               </li>
               <li className="text-gray-600 hover:text-blue-600">
                 <button
-                      className="enableEthereumButton bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm"
-                      onClick={connectWebsite}
-                    >
-                      {connected ? "Connected" : "Connect Wallet"}
-                  </button>
+                  className="enableEthereumButton bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm"
+                  onClick={connectWebsite}
+                >
+                  {connected ? "Connected" : "Connect Wallet"}
+                </button>
               </li>
             </ul>
           </div>
         </div>
       </div>
     </nav>
-  );
+  )
 }
 
-export default Navbar;
+export default Navbar
