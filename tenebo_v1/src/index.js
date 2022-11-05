@@ -13,6 +13,8 @@ import Adoptions from './components/Adoptions';
 import Profile from './components/Profile';
 import NFTPage from './components/NFTpage';
 import Home from './components/Home';
+import Boma from './components/Boma';
+import LionGuardian from './components/LionGuardian';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -24,6 +26,8 @@ root.render(
         <Route path="/sellNFT" element={<SellNFT />}/> 
         <Route path="/nftPage/:tokenId" element={<NFTPage />}/>        
         <Route path="/profile" element={<Profile />}/> 
+        <Route path="/boma" element={<Boma />}/>
+        <Route path="/lionGuardian" element={<LionGuardian />}/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
