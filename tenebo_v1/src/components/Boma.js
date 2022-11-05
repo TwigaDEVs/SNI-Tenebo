@@ -154,7 +154,7 @@ console.log("Working", process.env);
   return (
     <div className='bg-neutral-50'>
     <Navbar></Navbar>
-    <div className="bg-[url('/home/kagwe/projects/SNI-Tenebo/tenebo_v1/src/boma.png')]  mt-0 p-2 m-2">
+    <div className="boma mt-0 p-2 m-2">
         <div className='flex flex-col p-2 place-items-center text-gray-50 text-3xl'>
           Bomas
         </div>

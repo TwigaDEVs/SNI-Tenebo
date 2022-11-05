@@ -39,7 +39,7 @@ function Home() {
     return (
         <div>
             <Navbar></Navbar>
-            <div className="w-full bg-[url('./leig.jpg')]">
+            <div className="w-full bg-[url('./leig.jpg')] bg-cover bg-center">
                 <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
                     <div>
                         <div className="flex items-center justify-between py-3 md:py-5 md:block">
