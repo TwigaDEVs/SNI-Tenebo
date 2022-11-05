@@ -5,8 +5,9 @@ import "hardhat/console.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract NFTMarketplace is ERC721URIStorage {
+contract NFTMarketplace is ERC721URIStorage{
 
     using Counters for Counters.Counter;
     //_tokenIds variable has the most recent minted tokenId
@@ -174,6 +175,19 @@ contract NFTMarketplace is ERC721URIStorage {
         payable(owner).transfer(listPrice);
         //Transfer the proceeds from the sale to the seller of the NFT
         payable(seller).transfer(msg.value);
+    }
+
+    function getBalance() public view returns(uint256, address){
+
+        uint256 balance = address(this).balance; 
+
+        require(balance >= 0 , "NFT: balance is zero");
+        return (
+            balance,
+            address(this)
+        );
+
+
     }
 
     //We might add a resell token function in the future

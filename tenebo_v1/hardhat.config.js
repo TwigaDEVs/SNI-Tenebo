@@ -21,7 +21,12 @@ module.exports = {
   defaultNetwork: "hardhat",
   networks: {
     hardhat: {
-      chainId: 31337
+      chainId: 31337,
+      allowUnlimitedContractSize: true
+    },
+    localhost :{
+      chainId: 31337,
+      allowUnlimitedContractSize: true
     },
     mumbai: {
       url: `https://polygon-mumbai.g.alchemy.com/v2/nAhiCHKvZkhkp4A7PkkCIBON0-BXW26d`,
