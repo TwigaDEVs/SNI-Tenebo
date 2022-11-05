@@ -39,35 +39,29 @@ function Home() {
     return (
         <div>
             <Navbar></Navbar>
-            <div className="">
-                <div className="w-full bg-[url('./leig.jpg')] bg-cover bg-center p-2 px-5">
-                    <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
-                        <div>
-                            <div className="flex items-center justify-between py-3 md:py-5 md:block">
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                                <h1 className="text-3xl py-2 font-bold text-white">The security of our predators start with us</h1>
-                                <p className="py-2 text-white">Trying to  solve the problem of human wildlife conflict</p>
-                                <button className="py-2 bg-transparent hover:bg-blue-500 text-white-700 font-semibold hover:text-white py-2 px-4 border border-white-500 hover:border-transparent rounded">Get Started</button>
-                            </div>
-                            <br />
-                            <br />
-                            <br />
+            <div className="w-full bg-[url('./leig.jpg')]">
+                <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
+                    <div>
+                        <div className="flex items-center justify-between py-3 md:py-5 md:block">
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                            <h1 className="text-3xl py-2 font-bold text-white">The security of our predators start with us</h1>
+                            <p className="py-2 text-white">Trying to  solve the problem of human wildlife conflict</p>
+                            <button className="py-2 bg-transparent hover:bg-blue-500 text-white-700 font-semibold hover:text-white py-2 px-4 border border-white-500 hover:border-transparent rounded">Get Started</button>
                         </div>
+                        <br />
+                        <br />
+                        <br />
                     </div>
                 </div>
-                <div className="px-5 m-2">
-                    Top adopters
-                </div>
             </div>
-            <div>
-                
-            </div>
-
         </div>
-    );
+        
+        
+
+  )
 }
 
-export default Home;
+export default Home

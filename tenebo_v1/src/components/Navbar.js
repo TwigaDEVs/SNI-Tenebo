@@ -20,6 +20,7 @@ function Navbar() {
   const location = useLocation();
   const [currAddress, updateAddress] = useState("0x");
   const [navbar, setNavbar] = useState(false);
+  
 
   async function getAddress() {
     const ethers = require("ethers");
@@ -78,18 +79,13 @@ function Navbar() {
   return (
    
 
-    <nav className="w-full bg-slate-200 shadow border-b-4 drop-shadow-md">
+    <nav className="w-full bg-white shadow">
       <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
         <div>
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
-            
-            <div className="flex flex-row  ">
-              <img src={tene} className="w-10 h-10 "/>
-              <a href="/">
-                <Link to="/"><h2 className="text-2xl font-bold px-2 pt-2">Tenebo</h2></Link>
-              </a>
-            </div>
-
+            <a href="javascript:void(0)">
+              <Link to="/"><h2 className="text-2xl font-bold">Tenebo</h2></Link>
+            </a>
             <div className="md:hidden">
               <button
                 className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
@@ -123,7 +119,6 @@ function Navbar() {
                       d="M4 6h16M4 12h16M4 18h16"
                     />
                   </svg>
-
                 )}
               </button>
             </div>
@@ -137,7 +132,7 @@ function Navbar() {
           >
             <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
               <li className="text-gray-600 hover:text-blue-600">
-                <a href="/">Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li className="text-gray-600 hover:text-blue-600">
                 <Link to="/adoptions">Adoptions</Link>
@@ -148,7 +143,7 @@ function Navbar() {
               <li className="text-gray-600 relative hover:text-blue-600">
                 <button
                       type="button"
-                      className="inline-flex"
+                      classNameName="inline-flex"
                       id="menu-button"
                       aria-expanded="true"
                       aria-haspopup="true"
