@@ -181,7 +181,7 @@ console.log("Working", process.env);
     
     <div className='bg-neutral-50'>
         <Navbar></Navbar>
-        <div className="bg-[url('/home/kagwe/projects/SNI-Tenebo/tenebo_v1/src/leig.jpg')] bg-no-repeat bg-cover bg-center mt-0 p-2 m-2">
+        <div className="leig bg-no-repeat bg-cover bg-center mt-0 p-2 m-2">
           <div className="flex flex-col place-items-center font-semibold p-5 text-gray-50 text-3xl">
                     Lion Guardians
           </div>
