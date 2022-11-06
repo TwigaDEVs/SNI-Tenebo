@@ -115,14 +115,14 @@ return (
                 Listed for Adoption
             </div>
             
-            <div className="md:text-xl font-bold text-black flex flex-row">
+            {/* <div className="md:text-xl font-bold text-black flex flex-row">
             <p>Funds Raised: </p>
                 <p className="text-cyan-700 px-2"> {balance}</p>
             </div>
             <div className="md:text-xl font-bold text-black flex flex-row">
                 <p > account: </p>
                 <p className="text-cyan-700 px-2">{tdata[1]}</p>
-            </div>
+            </div> */}
             
 
             <div className="flex mt-5 justify-around flex-wrap max-w-screen-xl text-center">
