@@ -3,6 +3,7 @@ import mara from "../mara.jpg";
 import tene from "../tene.png"
 import Dropdown from "./Dropdown";
 import "./Navbar.css";
+
 import {
   BrowserRouter as Router,
   Switch,
