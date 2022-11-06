@@ -18,3 +18,5 @@ Clone the repo --||
 # Deployment *https://remix.ethereum.org/* 
 
 # Terminal "cd into the tenebo_vi" then in the terminal *npm start*. 
+
+# connect to metamask wallet. 
