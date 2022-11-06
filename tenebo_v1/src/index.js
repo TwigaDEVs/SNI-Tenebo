@@ -17,6 +17,7 @@ import Boma from './components/Boma';
 import LionGuardian from './components/LionGuardian';
 import Partners from './components/Partners';
 import Offers from './components/Offers';
+import Vote from './components/Vote';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -32,6 +33,7 @@ root.render(
         <Route path="/lionGuardian" element={<LionGuardian />}/>
         <Route path="/partners" element={<Partners />}/>
         <Route path="/offers" element={<Offers />}/>
+        <Route path="/vote" element={<Vote />}/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

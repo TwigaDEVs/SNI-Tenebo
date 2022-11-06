@@ -5,6 +5,8 @@ import Modal from 'react-modal';
 import StoredataJSON from "../Storedata.json";
 import { uploadFileToIPFS, uploadJSONToIPFS } from "../pinata";
 import axios from "axios";
+import MarketplaceJSON from "../Marketplace.json";
+import { useLocation, useParams } from 'react-router-dom';
 
 function Offers() {
     
@@ -24,6 +26,12 @@ function Offers() {
             storedData:"no data"
         }
     ]
+
+    const [data, updateData] = useState([]);
+    const [dataFetched, updateFetched] = useState(false);
+    const [address, updateAddress] = useState("0x");
+    const [totalPrice, updateTotalPrice] = useState("0");
+
       const [formParamsOffer, updateFormParamsOffer] = useState({ partner_name: '', offer_name: '',offer_description: '', offer_level: ''});
       const [message, updateMessage] = useState('');
       const ethers = require("ethers");
@@ -36,6 +44,7 @@ function Offers() {
       const [dataPartnerFetchedAdd, updateOfferFetchedAdd] = useState(false);
       const [olistItems, setOfferlistItems] = useState("000");
       const [offerD, updateOfferData] = useState(sampleData);
+      const [level, updateLevel] = useState("Level 0");
     
     async function OnChangeFile(e) {
         var file = e.target.files[0];
@@ -178,6 +187,73 @@ function Offers() {
   
   
   console.log("Working", process.env);
+
+
+
+  async function getNFTData(tokenId) {
+      const ethers = require("ethers");
+      let sumPrice = 0;
+      //After adding your Hardhat network to your metamask, this code will get providers and signers
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const addr = await signer.getAddress();
+
+      //Pull the deployed contract instance
+      let contract = new ethers.Contract(MarketplaceJSON.address, MarketplaceJSON.abi, signer)
+
+      //create an NFT Token
+      let transaction = await contract.getMyNFTs()
+
+      /*
+      * Below function takes the metadata from tokenURI and the data returned by getMyNFTs() contract function
+      * and creates an object of information that is to be displayed
+      */
+      
+      const items = await Promise.all(transaction.map(async i => {
+          const tokenURI = await contract.tokenURI(i.tokenId);
+          let meta = await axios.get(tokenURI);
+          meta = meta.data;
+
+          let price = ethers.utils.formatUnits(i.price.toString(), 'ether');
+          let item = {
+              price,
+              tokenId: i.tokenId.toNumber(),
+              seller: i.seller,
+              owner: i.owner,
+              image: meta.image,
+              name: meta.name,
+              description: meta.description,
+          }
+          sumPrice += Number(price);
+          return item;
+      }))
+
+      updateData(items);
+      updateFetched(true);
+      updateAddress(addr);
+      updateTotalPrice(sumPrice.toPrecision(3));
+  }
+
+  const params = useParams();
+  const tokenId = params.tokenId;
+  if(!dataFetched)
+      getNFTData(tokenId);
+
+
+  function onVisit(){
+    if (data.length >=1 && data.length <=4){
+
+        updateLevel("Level 1")
+
+    }
+    else if((data.length >=5 && data.length <=10)){
+        updateLevel("Level 2")
+    }
+
+    else {
+        updateLevel("Level 3")
+    }
+  }
   return (
     <div>
         <Navbar></Navbar>
@@ -190,13 +266,18 @@ function Offers() {
                     <button onClick={openModal} className ="outline outline-offset-2 outline-1 p-2 rounded-lg bg-stone-50">Add Offer</button>
                 </div>
             
+            </div >
+            <div className="flex flex-col place-items-center font-semibold p-5 text-teal-500 text-3xl">
+
+                <p className='flex flex-row'> You are a <p className='px-2 text-rose-700'> {level} </p>   adopter</p>
+
             </div>
-            <div className="flex mt-5 justify-around flex-wrap max-w-screen-xl text-center">
+            <div className="flex justify-center mt-5 bg-white  rounded-md m-5 flex-wrap max-w-screen-xl text-center justify-items-stretch">
                 {offerD.map(offer => (
 
-              <div className="bg-white border-b text-gray-900 white:text-dark">
-                    <img src={offer[4]} alt="" className="w-96 h-96 rounded-md" />
-                    <div className='bg-gray-100'>
+              <div className="bg-white border-b text-gray-900 white:text-dark rounded-lg m-1 ">
+                    <img src={offer[4]} alt="" className="w-96 h-96 rounded-lg p-2 m-1" />
+                    <div className='bg-gray-100 rounded-lg'>
                         <div>
                             <p>{offer[1]}</p>
                         </div>
@@ -211,7 +292,11 @@ function Offers() {
                         </div>
                     </div>
                     <div className='bg-gray-100 p-2'>
-                    <button className ="outline outline-offset-2 outline-1 p-2 rounded-lg bg-stone-50">Claim</button>
+                    { offer[5] == level ?
+                        <button className ="outline outline-offset-2 outline-1 p-2 rounded-lg bg-stone-50">Claim</button>
+                        : <div className="text-emerald-700 flex flex-row place-items-center px-3">Reach level <p className='text-fuchsia-400 px-2'> {offer[5]}  </p> to claim reward</div>
+                    }
+                    
                 </div>
               </div>
 
