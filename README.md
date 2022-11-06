@@ -15,7 +15,8 @@ Clone the repo --||
     commands   --/npm start/
           ''   --/npm run build/ 
 
-# Deployment *https://remix.ethereum.org/* 
+# Deployment *https://remix.ethereum.org/* goerli test net
+# Deployment *https://tenebo-a1b02.web.app/* 
 
 # Terminal "cd into the tenebo_vi" then in the terminal *npm start*. 
 
