@@ -27,6 +27,7 @@ function Boma() {
 
   const [bdata, updateFetchedBomaData] = useState(false);
   const [bomasD, updateBomaData] = useState(sampleData);
+  const [bomaId, setBomaId] = useState(0);
 
   const [formParamsBoma, updateFormParamsBoma] = useState({ full_name: '', username: '', social_media_link: ''});
   const [message, updateMessage] = useState('');
@@ -132,6 +133,8 @@ function Boma() {
   }
     if(!bdata)
     getAllBomas();
+  
+    
 
         let subtitle;
         const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -149,6 +152,41 @@ function Boma() {
           setIsOpen(false);
         }
 
+        function collectBoma(boma_id) {
+          setBomaId(boma_id);
+        }
+
+        async function addCandidate(e) {
+          e.preventDefault();
+      
+          //Upload data to IPFS
+          try {
+              //const metadataURL = await uploadMetadataToIPFS();
+              //After adding your Hardhat network to your metamask, this code will get providers and signers
+              const provider = new ethers.providers.Web3Provider(window.ethereum);
+              const signer = provider.getSigner();
+              updateMessage("Please wait.. uploading ...")
+      
+              //Pull the deployed contract instance
+              let contract = new ethers.Contract(StoredataJSON.address, StoredataJSON.abi, signer)
+      
+              //massage the params to be sent to the create NFT request
+              const {boma_id} = bomaId;
+              //let listingPrice = await contract.getListPrice()
+              //listingPrice = listingPrice.toString()
+      
+              //actually create the NFT
+              let transaction = await contract.addCandidate(boma_id,0)
+              await transaction.wait()
+      
+              alert("Successfully added!");
+              updateMessage("");
+              window.location.replace("/boma")
+          }
+          catch(e) {
+              alert( "Upload error"+e )
+          }
+        }
 
 console.log("Working", process.env);
   return (
@@ -204,7 +242,7 @@ console.log("Working", process.env);
                         </td>
                         <td className="py-2 px-4">
                         { boma[4] == "Bad" ?
-                        <button className="enableEthereumButton text-lime-400 hover:bg-blue-70 text-white font-bold py-2 px-4 rounded text-sm">Add to vote basket</button>
+                        <button className="enableEthereumButton text-lime-400 hover:bg-blue-70 text-white font-bold py-2 px-4 rounded text-sm " onClick={() => collectBoma(boma[0].toNumber())}>Add to vote basket</button>
                         : <div className="text-emerald-700"></div>
                           }
                     
