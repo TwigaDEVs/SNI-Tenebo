@@ -181,6 +181,9 @@ console.log("Working", process.env);
                         <th scope="col" className="py-2 px-4">
                             Sate of Boma
                         </th>
+                        <th scope="col" className="py-2 px-4">
+                            Upgrade
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -197,7 +200,14 @@ console.log("Working", process.env);
                         <p>{boma[2]}</p>
                         </td>
                         <td className="py-2 px-4">
-                        <p>{boma[4]}</p>
+                        <p>{boma[4]}</p>                    
+                        </td>
+                        <td className="py-2 px-4">
+                        { boma[4] == "Bad" ?
+                        <button className="enableEthereumButton text-lime-400 hover:bg-blue-70 text-white font-bold py-2 px-4 rounded text-sm">Add to vote basket</button>
+                        : <div className="text-emerald-700"></div>
+                          }
+                    
                         </td>
                      
                     </tr>

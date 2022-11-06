@@ -19,6 +19,12 @@ contract Storedata {
     uint public rafikiCount;
     uint public liong_id; 
     uint public boma_id;
+    string[] public levels;
+    uint public partner_id;
+    uint public offer_id;
+    uint public voter_id;
+ 
+   
     // userId variable made visible in public and also a state variable
 
 
@@ -28,6 +34,13 @@ contract Storedata {
        rafikiCount=0;
        liong_id = 1;
        boma_id = 1;
+       partner_id =1;
+       offer_id = 1;
+       voter_id = 1;
+      
+     
+       // African lions, leopards, rhinoceros, elephants, and Cape buffalo
+       levels = ["Level 1","Level 2","Level 3","Level 4","Level 5"];
     }
     struct Boma {
         uint boma_id;        // IPFS hash
@@ -49,6 +62,44 @@ contract Storedata {
         }
       
        LionGuardian[] public guardians;
+
+   struct Partner{
+      uint partner_id;
+      string name;
+      string description;
+      string partnerImage;
+   }
+
+   Partner[] public partner;
+
+
+   struct Offer{
+      uint offer_id;
+      string partner_name;
+      string offer_name;
+      string offer_description;
+      string offer_image;
+      string offer_level;
+   }
+
+   Offer[] public offer;
+
+   struct Candidates{
+      uint cand_id;
+      uint256 voteCount;
+
+   }
+
+   Candidates[] public candidates;
+
+
+   struct Voter{
+
+      address voter_adress;
+
+   }
+
+   Voter[] public voter;
 
     function set(uint x) public {
         storedData = x;
@@ -275,4 +326,264 @@ contract Storedata {
 
 
     }  
+
+
+   function getLevel() public view returns(string[] memory){
+         return levels;
+    }
+
+      // uint partner_id;
+      // string name;
+      // string description;
+      // string partnerImage;
+   
+   function addPartner(
+        string memory _name,
+        string memory _description,
+        string memory _partnerImage       
+   
+    ) public{
+       // pushing to the adopter's data
+       partner.push(Partner(partner_id,_name,_description,_partnerImage));
+       partner_id++;
+    }
+
+   function getPartner(uint _id) public view returns (uint, string memory, string memory,string memory) {
+      // calling the find adopter with the ID parameter
+      // reverts the contract to the original state no ID is found
+      uint i = findPartner(_id);
+
+      // returns the user info after assuming the search went successful 
+      return (
+         partner[i].partner_id,
+         partner[i].name, 
+         partner[i].description,
+         partner[i].partnerImage
+         
+      );
+    }
+
+ // function to find the adopter id;
+    function findPartner(uint _id) public view returns (uint){
+      // assigning a local counter variable to track the number of users
+      uint counter;
+
+      // looping through all users stored in the array
+      for (uint i = 0; i < partner.length; i++) {
+         //suppose the user is found
+         if(partner[i].partner_id == _id){
+
+            //increment the counter
+            counter++;
+            return i; // return the found integer
+         }
+      }
+
+      if (counter < 1){
+         // revert to default state suppose no user is found
+         revert("user does not exist"); 
+     
+      }
+
+      
+    }
+
+   function updatePartner(uint _partner_id, string memory _name, string memory _description, string memory _partnerImage)public{
+       uint i = findPartner(_partner_id);
+       partner[i].name = _name;
+       partner[i].description = _description;
+       partner[i].partnerImage = _partnerImage;
+  
+    }
+
+    function getAllPartners() public view returns(Partner[] memory){
+      return partner;
+    }
+
+   // deleter adopter info
+    function deletePartner(uint _id) public {
+       uint i = _id;
+       delete partner[i];
+
+
+    }  
+
+      // string partner;
+      // string offer_name;
+      // string offer_description;
+      // string offer_image;
+ 
+   function addOffer(
+        string memory _partner_name,
+        string memory _offer_name,
+        string memory _offer_description,
+        string memory _offer_image,
+        string memory _offer_level    
+   
+    ) public{
+       // pushing to the adopter's data
+       offer.push(Offer(offer_id,_partner_name,_offer_name,_offer_description,_offer_image,_offer_level));
+       offer_id++;
+    }
+
+   function getOffer(uint _id) public view returns (uint, string memory, string memory,string memory,string memory,string memory ) {
+      // calling the find adopter with the ID parameter
+      // reverts the contract to the original state no ID is found
+      uint i = findOffer(_id);
+
+      // returns the user info after assuming the search went successful 
+      return (
+         offer[i].offer_id,
+         offer[i].partner_name,
+         offer[i].offer_name, 
+         offer[i].offer_description,
+         offer[i].offer_image,
+         offer[i].offer_level
+         
+      );
+    }
+
+ // function to find the adopter id;
+    function findOffer(uint _id) public view returns (uint){
+      // assigning a local counter variable to track the number of users
+      uint counter;
+
+      // looping through all users stored in the array
+      for (uint i = 0; i < offer.length; i++) {
+         //suppose the user is found
+         if(offer[i].offer_id == _id){
+
+            //increment the counter
+            counter++;
+            return i; // return the found integer
+         }
+      }
+
+      if (counter < 1){
+         // revert to default state suppose no user is found
+         revert("user does not exist"); 
+     
+      }
+
+      
+    }
+
+   function updateOffer(uint _offer_id,string memory _partner_name, string memory _offer_name, string memory _offer_description, string memory _offer_image,string memory _offer_level)public{
+       uint i = findOffer(_offer_id);
+       offer[i].partner_name = _partner_name;
+       offer[i].offer_name = _offer_name;
+       offer[i].offer_description = _offer_description;
+       offer[i].offer_image = _offer_image;
+       offer[i].offer_level = _offer_level;
+  
+    }
+
+    function getAllOffers() public view returns(Offer[] memory){
+      return offer;
+    }
+
+   // deleter adopter info
+    function deleteOffer(uint _id) public {
+       uint i = _id;
+       delete offer[i];
+
+
+    }  
+
+   function addCandidate(
+        uint _cand_id,
+        uint256 _vote_count
+      
+    ) public{
+       // pushing to the adopter's data
+       candidates.push(Candidates(_cand_id,_vote_count));
+
+    }
+
+       function getCandidate(uint _id) public view returns (uint, uint256) {
+      // calling the find adopter with the ID parameter
+      // reverts the contract to the original state no ID is found
+      uint i = findCandidate(_id);
+
+      // returns the user info after assuming the search went successful 
+      return (
+         candidates[i].cand_id,
+         candidates[i].voteCount
+      
+      );
+    }
+
+ // function to find the adopter id;
+    function findCandidate(uint _id) public view returns (uint){
+      // assigning a local counter variable to track the number of users
+      uint counter;
+
+      // looping through all users stored in the array
+      for (uint i = 0; i < candidates.length; i++) {
+         //suppose the user is found
+         if(candidates[i].cand_id == _id){
+
+            //increment the counter
+            counter++;
+            return i; // return the found integer
+         }
+      }
+
+      if (counter < 1){
+         // revert to default state suppose no user is found
+         revert("user does not exist"); 
+     
+      }
+
+      
+    }
+
+
+function getAllCandidates() public view returns(Candidates[] memory){
+      return candidates;
+    }
+
+       // deleter adopter info
+    function deleteCanditate(uint _id) public {
+       uint i = _id;
+       delete candidates[i];
+
+
+    } 
+      // uint voter_id;
+      // uint voter_adress;
+      // uint voter_allowed;
+      // bool voter_voted;
+      // uint voter_vote;
+
+
+   
+function getAllVoters() public view returns(Voter[] memory){
+      return voter;
+    }
+
+function voteCandidate(uint _id) public{
+   voter.push(Voter(msg.sender));
+   updateCandidateVote(_id);
+
+}
+
+function updateCandidateVote(uint _cand_id)public returns(uint256){
+       uint i = findCandidate(_cand_id);
+       uint256 current_vote = candidates[i].voteCount;
+       uint256 new_vote = current_vote ++;
+       candidates[i].voteCount = new_vote;
+       return new_vote;
+ 
+    }
+function getVotes(uint _id) public view returns(uint256){
+         uint i = findCandidate(_id);
+
+      // returns the user info after assuming the search went successful 
+      return (
+         candidates[i].voteCount
+      
+      );
+}
+
 }
