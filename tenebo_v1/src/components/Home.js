@@ -1,6 +1,8 @@
+import Timon from "./timon.jpeg";
 import Navbar from "./Navbar";
 import StoredataJSON from "../Storedata.json";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 import React from "react";
 
@@ -43,13 +45,24 @@ function Home() {
                 <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
                     <div>
                         <div className="flex items-center justify-between py-3 md:py-5 md:block">
-                        <br />
-                        <br />
-                        <br />
-                        <br />
-                            <h1 className="text-3xl py-2 font-bold text-white">The security of our predators start with us</h1>
-                            <p className="py-2 text-white">Trying to  solve the problem of human wildlife conflict</p>
-                            <button className="py-2 bg-transparent hover:bg-blue-500 text-white-700 font-semibold hover:text-white py-2 px-4 border border-white-500 hover:border-transparent rounded">Get Started</button>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <h1 className="text-3xl py-2 font-bold text-white">
+                                Adopt a predator to save a predator
+                            </h1>
+                            <p className="py-2 text-white">
+                                the role you play goes a long way. find out how
+                            </p>
+                            <button
+                                type="button"
+                                className="inline-block px-6 py-2 border-2 border-gray-200 text-gray-200 leading-tight font-extrabold rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+                            >
+                                <Link to="/adoptions" className="text-gray-200">
+                                    Let's Go !!!
+                                </Link>
+                            </button>
                         </div>
                         <br />
                         <br />
@@ -57,11 +70,40 @@ function Home() {
                     </div>
                 </div>
             </div>
+            <div className="bg-gradient-to-r from-indigo-100">
+                <div
+                    style={{
+                        margin: "auto",
+                        width: "50rem",
+                        padding: "10px",
+                    }}
+                >
+                    <div className="text-blue">
+                        <br />
+                        <br />
+                        <img
+                            src={Timon}
+                            style={{
+                                width: "150px",
+                                height: "150px",
+                                margin: "auto",
+                            }}
+                            alt="timon"
+                        />
+                        <br />
+                        {/*<h1>Hello world</h1>*/}
+                        <p style={{ color: "#555" }}>
+                            We use Proceeds from Mara Predator Adoption NFTs, to
+                            subsidize the reinforcement of Maasai Bomas
+                            (Livestock Enclosure). Making the Maasai the Mara
+                            Happy and Mara predators safe from Human Conflict
+                            !!!
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        
-
-  )
+    );
 }
 
-export default Home
+export default Home;

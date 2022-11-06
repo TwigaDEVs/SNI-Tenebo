@@ -4,6 +4,7 @@ import MarketplaceJSON from "../Marketplace.json";
 import axios from "axios";
 import { useState } from "react";
 import NFTTile from "./NFTTile";
+import NoNFT from "./NoNFT";
 
 export default function Profile () {
     const [data, updateData] = useState([]);
@@ -91,15 +92,14 @@ export default function Profile () {
                 </div>
             </div>
 
-            <div className="flex flex-col text-center items-center mt-11 text-cyan-600">
-                <h2 className="font-bold">Your NFTs</h2>
+            <div className="flex flex-col text-center items-center mt-3 text-cyan-600">
                 <div className="flex justify-center flex-wrap max-w-screen-xl">
                     {data.map((value, index) => {
                     return <NFTTile data={value} key={index}></NFTTile>;
                     })}
                 </div>
-                <div className="mt-10 text-xl">
-                    {data.length == 0 ? "Oops, No NFT data to display (Are you logged in?)":""}
+                <div className="mt-1 text-xl">
+                    {data.length == 0 ? <NoNFT />:""}
                 </div>
             </div>
             </div>
