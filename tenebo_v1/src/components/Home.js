@@ -39,7 +39,7 @@ function Home() {
     if (!dataFetched) get();
 
     return (
-        <div>
+        <div className="mb-2">
             <Navbar></Navbar>
             <div className="w-full bg-[url('./leig.jpg')] bg-cover bg-center">
                 <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
@@ -71,28 +71,17 @@ function Home() {
                 </div>
             </div>
             <div className="bg-gradient-to-r from-indigo-100">
-                <div
-                    style={{
-                        margin: "auto",
-                        width: "50rem",
-                        padding: "10px",
-                    }}
-                >
-                    <div className="text-blue">
+                <div>
+                    <div className="text-blue flex flex-col place-items-center flex-wrap">
                         <br />
                         <br />
                         <img
                             src={marafiki}
-                            style={{
-                                width: "150px",
-                                height: "150px",
-                                margin: "auto",
-                            }}
-                            alt="timon"
+                            className="rounded-full w-40 h-40"
                         />
                         <br />
                         {/*<h1>Hello world</h1>*/}
-                        <p style={{ color: "#555" }}>
+                        <p className="p-2">
                             We use Proceeds from Mara Predator Adoption NFTs, to
                             subsidize the reinforcement of Maasai Bomas
                             (Livestock Enclosure). Making the Maasai the Mara
