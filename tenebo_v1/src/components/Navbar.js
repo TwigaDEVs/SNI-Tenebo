@@ -41,6 +41,7 @@ function Navbar() {
   }
 
   async function connectWebsite() {
+    
     const chainId = await window.ethereum.request({ method: "eth_chainId" });
     if (chainId !== "0x5") {
       //alert('Incorrect network! Switch your metamask network to Rinkeby');
@@ -48,6 +49,8 @@ function Navbar() {
         method: "wallet_switchEthereumChain",
         params: [{ chainId: "0x5" }],
       });
+
+      
     }
     await window.ethereum
       .request({ method: "eth_requestAccounts" })
@@ -57,25 +60,37 @@ function Navbar() {
         getAddress();
         window.location.replace(location.pathname);
       });
+    
   }
 
   const handleDropdown = () => {
     setDropdown(!dropdown);
   };
 
+  
+
   useEffect(() => {
+    
+    if(window.ethereum) {
+
     let val = window.ethereum.isConnected();
     if (val) {
       console.log("here");
       getAddress();
       toggleConnect(val);
-      updateButton();
     }
 
     window.ethereum.on("accountsChanged", function (accounts) {
       window.location.replace(location.pathname);
     });
+  }
+
   });
+
+
+
+  
+
 
   return (
    
@@ -91,7 +106,7 @@ function Navbar() {
               <button
                 className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
                 onClick={() => setNavbar(!navbar)}
-              >
+              > 
                 {navbar ? (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

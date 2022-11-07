@@ -1,4 +1,4 @@
-import Timon from "./timon.jpeg";
+import marafiki from "./marafiki.png";
 import Navbar from "./Navbar";
 import StoredataJSON from "../Storedata.json";
 import { useState } from "react";
@@ -82,7 +82,7 @@ function Home() {
                         <br />
                         <br />
                         <img
-                            src={Timon}
+                            src={marafiki}
                             style={{
                                 width: "150px",
                                 height: "150px",

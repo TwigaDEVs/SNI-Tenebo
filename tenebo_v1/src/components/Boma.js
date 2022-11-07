@@ -253,19 +253,7 @@ console.log("Working", process.env);
                 </tbody>
             </table>
         </div>
-      <div className="flex flex-col place-items-center mt-20 ">
-            <div className='flex flex-col bg-white place-items-center mt-20 p-5'>
-                <strong className="text-green-500 text-sm font-bold mb-2" > {dataAdd[1] }</strong>
-                <img src={imageURL} alt="" className="w-72 h-80 rounded-lg object-cover" />
-                <strong className="text-green-500 text-sm font-bold mb-2" > {dataAdd[2] }</strong>
-                <strong className="text-green-500 text-sm font-bold mb-2" > {dataAdd[3] }</strong>                
-            </div>
-            <button onClick={getAdopter} className="font-bold mt-10  bg-purple-500 text-white rounded p-2 shadow-lg">
-                    get adopter
-                </button>
-        
 
-        </div>
       <div className="flex flex-col place-items-center mt-20 ">
             <div>
                 
