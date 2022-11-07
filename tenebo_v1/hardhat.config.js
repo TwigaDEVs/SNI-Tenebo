@@ -30,7 +30,8 @@ module.exports = {
     },
     goerli: {
       url: GEORLI_RPC_URL,
-      accounts: [ PRIVATE_KEY ]
+      accounts: [ PRIVATE_KEY ],
+      allowUnlimitedContractSize: true
     }
   },
   solidity: {

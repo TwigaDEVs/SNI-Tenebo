@@ -18,6 +18,7 @@ import { useLocation } from "react-router";
 function Navbar() {
   const [dropdown, setDropdown] = useState(false);
   const [connected, toggleConnect] = useState(false);
+  
   const location = useLocation();
   const [currAddress, updateAddress] = useState("0x");
   const [navbar, setNavbar] = useState(false);
@@ -78,6 +79,7 @@ function Navbar() {
       console.log("here");
       getAddress();
       toggleConnect(val);
+      
     }
 
     window.ethereum.on("accountsChanged", function (accounts) {

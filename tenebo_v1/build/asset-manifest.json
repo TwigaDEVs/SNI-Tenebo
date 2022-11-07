@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/static/css/main.99fce8c3.css",
+    "main.js": "/static/js/main.5348ead2.js",
+    "static/js/787.be41429e.chunk.js": "/static/js/787.be41429e.chunk.js",
+    "static/media/leig.jpg": "/static/media/leig.162978cc4b1061fbba0f.jpg",
+    "static/media/marafiki.png": "/static/media/marafiki.fd3153499801bdc862e8.png",
+    "static/media/fisi.jpeg": "/static/media/fisi.560e6cc9127dbfc95958.jpeg",
+    "index.html": "/index.html",
+    "main.99fce8c3.css.map": "/static/css/main.99fce8c3.css.map",
+    "main.5348ead2.js.map": "/static/js/main.5348ead2.js.map",
+    "787.be41429e.chunk.js.map": "/static/js/787.be41429e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.99fce8c3.css",
+    "static/js/main.5348ead2.js"
+  ]
+}
