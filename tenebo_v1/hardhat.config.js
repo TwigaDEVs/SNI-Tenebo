@@ -28,14 +28,6 @@ module.exports = {
       chainId: 31337,
       allowUnlimitedContractSize: true
     },
-    mumbai: {
-      url: `https://polygon-mumbai.g.alchemy.com/v2/nAhiCHKvZkhkp4A7PkkCIBON0-BXW26d`,
-      //accounts: [process.env.privateKey]
-    },
-    matic: {
-      url: "https://polygon-mainnet.g.alchemy.com/v2/nAhiCHKvZkhkp4A7PkkCIBON0-BXW26d",
-      //accounts: [process.env.privateKey]
-    },
     goerli: {
       url: GEORLI_RPC_URL,
       accounts: [ PRIVATE_KEY ]
