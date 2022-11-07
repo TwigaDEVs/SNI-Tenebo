@@ -27,6 +27,7 @@ function Boma() {
 
   const [bdata, updateFetchedBomaData] = useState(false);
   const [bomasD, updateBomaData] = useState(sampleData);
+  const [bomaId, setBomaId] = useState(0);
 
   const [formParamsBoma, updateFormParamsBoma] = useState({ full_name: '', username: '', social_media_link: ''});
   const [message, updateMessage] = useState('');
@@ -132,6 +133,8 @@ function Boma() {
   }
     if(!bdata)
     getAllBomas();
+  
+    
 
         let subtitle;
         const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -149,12 +152,47 @@ function Boma() {
           setIsOpen(false);
         }
 
+        function collectBoma(boma_id) {
+          setBomaId(boma_id);
+        }
+
+        async function addCandidate(e) {
+          e.preventDefault();
+      
+          //Upload data to IPFS
+          try {
+              //const metadataURL = await uploadMetadataToIPFS();
+              //After adding your Hardhat network to your metamask, this code will get providers and signers
+              const provider = new ethers.providers.Web3Provider(window.ethereum);
+              const signer = provider.getSigner();
+              updateMessage("Please wait.. uploading ...")
+      
+              //Pull the deployed contract instance
+              let contract = new ethers.Contract(StoredataJSON.address, StoredataJSON.abi, signer)
+      
+              //massage the params to be sent to the create NFT request
+              const {boma_id} = bomaId;
+              //let listingPrice = await contract.getListPrice()
+              //listingPrice = listingPrice.toString()
+      
+              //actually create the NFT
+              let transaction = await contract.addCandidate(boma_id,0)
+              await transaction.wait()
+      
+              alert("Successfully added!");
+              updateMessage("");
+              window.location.replace("/boma")
+          }
+          catch(e) {
+              alert( "Upload error"+e )
+          }
+        }
 
 console.log("Working", process.env);
   return (
     <div className='bg-neutral-50'>
     <Navbar></Navbar>
-    <div className="bg-[url('/home/kagwe/projects/SNI-Tenebo/tenebo_v1/src/boma.png')]  mt-0 p-2 m-2">
+    <div className="boma mt-0 p-2 m-2">
         <div className='flex flex-col p-2 place-items-center text-gray-50 text-3xl'>
           Bomas
         </div>
@@ -181,6 +219,9 @@ console.log("Working", process.env);
                         <th scope="col" className="py-2 px-4">
                             Sate of Boma
                         </th>
+                        <th scope="col" className="py-2 px-4">
+                            Upgrade
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -197,7 +238,14 @@ console.log("Working", process.env);
                         <p>{boma[2]}</p>
                         </td>
                         <td className="py-2 px-4">
-                        <p>{boma[4]}</p>
+                        <p>{boma[4]}</p>                    
+                        </td>
+                        <td className="py-2 px-4">
+                        { boma[4] == "Bad" ?
+                        <button className="enableEthereumButton text-lime-400 hover:bg-blue-70 text-white font-bold py-2 px-4 rounded text-sm " onClick={() => collectBoma(boma[0].toNumber())}>Add to vote basket</button>
+                        : <div className="text-emerald-700"></div>
+                          }
+                    
                         </td>
                      
                     </tr>
@@ -205,19 +253,7 @@ console.log("Working", process.env);
                 </tbody>
             </table>
         </div>
-      <div className="flex flex-col place-items-center mt-20 ">
-            <div className='flex flex-col bg-white place-items-center mt-20 p-5'>
-                <strong className="text-green-500 text-sm font-bold mb-2" > {dataAdd[1] }</strong>
-                <img src={imageURL} alt="" className="w-72 h-80 rounded-lg object-cover" />
-                <strong className="text-green-500 text-sm font-bold mb-2" > {dataAdd[2] }</strong>
-                <strong className="text-green-500 text-sm font-bold mb-2" > {dataAdd[3] }</strong>                
-            </div>
-            <button onClick={getAdopter} className="font-bold mt-10  bg-purple-500 text-white rounded p-2 shadow-lg">
-                    get adopter
-                </button>
-        
 
-        </div>
       <div className="flex flex-col place-items-center mt-20 ">
             <div>
                 

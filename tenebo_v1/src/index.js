@@ -15,6 +15,9 @@ import NFTPage from './components/NFTpage';
 import Home from './components/Home';
 import Boma from './components/Boma';
 import LionGuardian from './components/LionGuardian';
+import Partners from './components/Partners';
+import Offers from './components/Offers';
+import Vote from './components/Vote';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -28,12 +31,13 @@ root.render(
         <Route path="/profile" element={<Profile />}/> 
         <Route path="/boma" element={<Boma />}/>
         <Route path="/lionGuardian" element={<LionGuardian />}/>
+        <Route path="/partners" element={<Partners />}/>
+        <Route path="/offers" element={<Offers />}/>
+        <Route path="/vote" element={<Vote />}/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+
 reportWebVitals();

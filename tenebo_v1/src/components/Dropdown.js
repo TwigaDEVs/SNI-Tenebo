@@ -36,6 +36,42 @@ const Dropdown = ({ className }) => {
 					Lion Guardians
 				</Link>
 			</div>
+			<div class="py-1" role="none">
+				<Link
+					to="/partners"
+					href="#"
+					className="text-gray-700 block px-4 p-2 py-2 text-sm"
+					role="menuitem"
+					tabindex="-1"
+					id="menu-item-2"
+				>
+					Partners
+				</Link>
+			</div>
+			<div class="py-1" role="none">
+				<Link
+					to="/offers"
+					href="#"
+					className="text-gray-700 block px-4 p-2 py-2 text-sm"
+					role="menuitem"
+					tabindex="-1"
+					id="menu-item-2"
+				>
+					Offers
+				</Link>
+			</div>
+			<div class="py-1" role="none">
+				<Link
+					to="/vote"
+					href="#"
+					className="text-gray-700 block px-4 p-2 py-2 text-sm"
+					role="menuitem"
+					tabindex="-1"
+					id="menu-item-2"
+				>
+					Vote
+				</Link>
+			</div>
 		</div>
 	);
 };
