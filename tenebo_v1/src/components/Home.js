@@ -1,4 +1,5 @@
 import marafiki from "./marafiki.png";
+
 import Navbar from "./Navbar";
 import StoredataJSON from "../Storedata.json";
 import { useState } from "react";
@@ -81,13 +82,14 @@ function Home() {
                         />
                         <br />
                         {/*<h1>Hello world</h1>*/}
-                        <p className="p-2">
-                            We use Proceeds from Mara Predator Adoption NFTs, to
-                            subsidize the reinforcement of Maasai Bomas
-                            (Livestock Enclosure). Making the Maasai the Mara
-                            Happy and Mara predators safe from Human Conflict
-                            !!!
-                        </p>
+                        <div className="" style={{"maxWidth":"100vh"}}>
+                            <p className="p-2 w-120 text-center  whitespace-normal">
+                            We use Proceeds from Mara Predator Adoption NFTs, 
+                            to subsidize the reinforcement of Maasai Bomas (Livestock Enclosure).
+                            Making the Maasai Happy and Mara predators safe from Human Conflict !!!
+                            </p>
+                        </div>
+
                     </div>
                 </div>
             </div>
